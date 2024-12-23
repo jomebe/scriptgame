@@ -1,20 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Main from './component/main';
 import Game from './component/game';
-import LevelComponent from './component/play/LevelComponent';
 import Ending from './component/Ending';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/game" element={<Game />} />
-        <Route path="/play/:levelId" element={<LevelComponent />} />
-        <Route path="/ending" element={<Ending />} />
+        <Route path="/" element={<Navigate to="main" replace />} />
+        <Route path="main" element={<Main />} />
+        <Route path="game" element={<Game />} />
+        <Route path="ending" element={<Ending />} />
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
 

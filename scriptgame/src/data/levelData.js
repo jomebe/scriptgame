@@ -1,304 +1,217 @@
 export const levelData = [
   {
-    level: 1,
-    question: "다음 코드의 출력 결과는?",
-    code: 'console.log("Hello World");',
-    answer: "hello world",
-    hint: "console.log는 괄호 안의 내용을 그대로 출력합니다. 대소문자를 주의하세요."
+    id: 1,
+    name: "속도의 시험",
+    description: "speed: 15로 설정하고 빠르게 움직이는 장애물을 피하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 500 },
+    requireExactConfig: {
+      speed: 15
+    },
+    obstacles: [
+      ...Array.from({ length: 4 }, (_, i) => ({
+        x: 200 + i * 120,
+        y: 300,
+        width: 30,
+        height: 30,
+        speedX: 0,
+        speedY: 3 + i
+      })),
+      { x: 300, y: 450, width: 200, height: 20 }
+    ]
   },
   {
-    level: 2,
-    question: "다음 코드의 출력 결과는?",
-    code: 'let x = 5;\nlet y = 3;\nconsole.log(x + y);',
-    answer: "8",
-    hint: "숫자끼리의 + 연산은 덧셈을 수행합니다."
+    id: 2,
+    name: "무지개 도전",
+    description: "color: 'rainbow'로 설정하고 움직이는 발판을 타고 가세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 200 },
+    requireExactConfig: {
+      color: 'rainbow'
+    },
+    obstacles: Array.from({ length: 5 }, (_, i) => ({
+      x: 150 + i * 120,
+      y: 400,
+      width: 80,
+      height: 20,
+      speedX: (i % 2 === 0 ? 2 : -2),
+      speedY: 0
+    }))
   },
   {
-    level: 3,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const name = "JavaScript";\nconsole.log(`Hello ${name}!`);',
-    answer: "hello javascript!"
+    id: 3,
+    name: "초강력 점프",
+    description: "jumpPower: 20, gravity: 0.8로 설정하고 높이 점프하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 50 },
+    requireExactConfig: {
+      jumpPower: 20,
+      gravity: 0.8
+    },
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      ...Array.from({ length: 6 }, (_, i) => ({
+        x: 100 + i * 120,
+        y: 300 - Math.sin(i) * 100,
+        width: 80,
+        height: 20,
+        speedX: 0,
+        speedY: Math.cos(i) * 2
+      }))
+    ]
   },
   {
-    level: 4,
-    question: "다음 배열의 길이는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr.length);',
-    answer: "5"
+    id: 4,
+    name: "미니 챌린지",
+    description: "size: 8로 설정하고 좁은 통로를 통과하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 500 },
+    requireExactConfig: {
+      size: 8
+    },
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      ...Array.from({ length: 20 }, (_, i) => ({
+        x: 150 + i * 30,
+        y: 0,
+        width: 10,
+        height: 520,
+        gap: 15
+      }))
+    ]
   },
   {
-    level: 5,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "Hello";\nconsole.log(str.toLowerCase());',
-    answer: "hello"
+    id: 5,
+    name: "네온 레이스",
+    description: "trail: true, speed: 12로 설정하고 제한시간 안에 도착하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 500 },
+    timeLimit: 8,
+    requireExactConfig: {
+      trail: true,
+      speed: 12
+    },
+    obstacles: Array.from({ length: 12 }, (_, i) => ({
+      x: 150 + (i * 50),
+      y: 300 + Math.sin(i) * 150,
+      width: 20,
+      height: 200
+    }))
   },
   {
-    level: 6,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const num = 10;\nconsole.log(typeof num);',
-    answer: "number"
+    id: 6,
+    name: "탄성 마스터",
+    description: "bounce: 1.5, size: 15로 설정하고 벽에서 튕겨 올라가세요!",
+    playerStart: { x: 400, y: 500 },
+    goal: { x: 400, y: 50 },
+    requireExactConfig: {
+      bounce: 1.5,
+      size: 15
+    },
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      { x: 300, y: 300, width: 200, height: 20 },
+      { x: 100, y: 200, width: 200, height: 20 },
+      { x: 500, y: 200, width: 200, height: 20 },
+      ...Array.from({ length: 3 }, (_, i) => ({
+        x: 350,
+        y: 100 + i * 100,
+        width: 30,
+        height: 30,
+        speedX: 4,
+        speedY: 0
+      }))
+    ]
   },
   {
-    level: 7,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.join("-"));',
-    answer: "1-2-3"
+    id: 7,
+    name: "원형 질주",
+    description: "shape: 'circle', speed: 18로 설정하고 빠르게 통과하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 500 },
+    requireExactConfig: {
+      shape: 'circle',
+      speed: 18
+    },
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      ...Array.from({ length: 8 }, (_, i) => ({
+        x: 200 + i * 60,
+        y: 200,
+        width: 40,
+        height: 40,
+        speedX: Math.cos(i) * 3,
+        speedY: Math.sin(i) * 3
+      }))
+    ]
   },
   {
-    level: 8,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const obj = { name: "John" };\nconsole.log(obj.name);',
-    answer: "john"
+    id: 8,
+    name: "무적 레이스",
+    description: "invincible: true, speed: 8로 설정하고 제한시간 안에 도착하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 500 },
+    timeLimit: 5,
+    requireExactConfig: {
+      invincible: true,
+      speed: 8
+    },
+    obstacles: Array.from({ length: 40 }, (_, i) => ({
+      x: 100 + (i % 8) * 80,
+      y: 100 + Math.floor(i / 8) * 80,
+      width: 40,
+      height: 40,
+      speedX: (i % 2 === 0 ? 2 : -2),
+      speedY: (i % 3 === 0 ? 2 : -2)
+    }))
   },
   {
-    level: 9,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr[2]);',
-    answer: "3"
+    id: 9,
+    name: "복합 도전",
+    description: "jumpPower: 15, bounce: 0.8, size: 12로 설정하고 도전하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 100 },
+    requireExactConfig: {
+      jumpPower: 15,
+      bounce: 0.8,
+      size: 12
+    },
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      ...Array.from({ length: 15 }, (_, i) => ({
+        x: 150 + i * 40,
+        y: 300 + Math.sin(i) * 100,
+        width: 20,
+        height: 200,
+        speedX: 0,
+        speedY: Math.cos(i)
+      }))
+    ]
   },
   {
-    level: 10,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const x = true;\nconst y = false;\nconsole.log(x && y);',
-    answer: "false"
-  },
-  {
-    level: 11,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "JavaScript";\nconsole.log(str.length);',
-    answer: "10"
-  },
-  {
-    level: 12,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.includes(2));',
-    answer: "true"
-  },
-  {
-    level: 13,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const num = 5.7;\nconsole.log(Math.floor(num));',
-    answer: "5"
-  },
-  {
-    level: 14,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "Hello";\nconsole.log(str.charAt(1));',
-    answer: "e"
-  },
-  {
-    level: 15,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.reverse());',
-    answer: "3,2,1"
-  },
-  {
-    level: 16,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "Hello,World";\nconsole.log(str.split(","));',
-    answer: "hello,world"
-  },
-  {
-    level: 17,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const num = -5;\nconsole.log(Math.abs(num));',
-    answer: "5"
-  },
-  {
-    level: 18,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.map(x => x * 2));',
-    answer: "2,4,6"
-  },
-  {
-    level: 19,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "   Hello   ";\nconsole.log(str.trim());',
-    answer: "hello"
-  },
-  {
-    level: 20,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr.slice(1, 4));',
-    answer: "2,3,4"
-  },
-  {
-    level: 21,
-    question: "다음 코드의 출력 결과는?",
-    code: 'console.log(Math.max(1, 5, 3, 2));',
-    answer: "5"
-  },
-  {
-    level: 22,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\narr.push(4);\nconsole.log(arr.length);',
-    answer: "4"
-  },
-  {
-    level: 23,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "Hello";\nconsole.log(str.indexOf("l"));',
-    answer: "2"
-  },
-  {
-    level: 24,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr.filter(x => x > 3));',
-    answer: "4,5"
-  },
-  {
-    level: 25,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const num = 3.14159;\nconsole.log(num.toFixed(2));',
-    answer: "3.14"
-  },
-  {
-    level: 26,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = ["a", "b", "c"];\nconsole.log(arr.indexOf("b"));',
-    answer: "1"
-  },
-  {
-    level: 27,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello";\nconsole.log(str.repeat(2));',
-    answer: "hellohello"
-  },
-  {
-    level: 28,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.some(x => x > 2));',
-    answer: "true"
-  },
-  {
-    level: 29,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "JavaScript";\nconsole.log(str.substring(0, 4));',
-    answer: "java"
-  },
-  {
-    level: 30,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 2, 3];\nconsole.log(new Set(arr).size);',
-    answer: "3"
-  },
-  {
-    level: 31,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const obj = { a: 1, b: 2 };\nconsole.log(Object.keys(obj));',
-    answer: "a,b"
-  },
-  {
-    level: 32,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.every(x => x > 0));',
-    answer: "true"
-  },
-  {
-    level: 33,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello world";\nconsole.log(str.includes("world"));',
-    answer: "true"
-  },
-  {
-    level: 34,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [[1, 2], [3, 4]];\nconsole.log(arr.flat());',
-    answer: "1,2,3,4"
-  },
-  {
-    level: 35,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const num = 123.456;\nconsole.log(Math.round(num));',
-    answer: "123"
-  },
-  {
-    level: 36,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.findIndex(x => x > 1));',
-    answer: "1"
-  },
-  {
-    level: 37,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello";\nconsole.log(str.padStart(7, "*"));',
-    answer: "**hello"
-  },
-  {
-    level: 38,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.find(x => x > 1));',
-    answer: "2"
-  },
-  {
-    level: 39,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "JavaScript";\nconsole.log(str.endsWith("Script"));',
-    answer: "true"
-  },
-  {
-    level: 40,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, [2, [3]]];\nconsole.log(arr.flat(2));',
-    answer: "1,2,3"
-  },
-  {
-    level: 41,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello";\nconsole.log(Array.from(str));',
-    answer: "h,e,l,l,o"
-  },
-  {
-    level: 42,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.reduce((a, b) => a * b));',
-    answer: "6"
-  },
-  {
-    level: 43,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello world";\nconsole.log(str.split(" ").length);',
-    answer: "2"
-  },
-  {
-    level: 44,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [3, 1, 4, 1, 5];\nconsole.log([...new Set(arr)]);',
-    answer: "3,1,4,5"
-  },
-  {
-    level: 45,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "JavaScript";\nconsole.log(str.slice(-6));',
-    answer: "script"
-  },
-  {
-    level: 46,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr.filter(x => x % 2 === 0));',
-    answer: "2,4"
-  },
-  {
-    level: 47,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const str = "hello";\nconsole.log(str.split("").reverse().join(""));',
-    answer: "olleh"
-  },
-  {
-    level: 48,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3];\nconsole.log(arr.map(x => x ** 2));',
-    answer: "1,4,9"
-  },
-  {
-    level: 49,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const obj = { x: 1, y: 2 };\nconsole.log(Object.values(obj));',
-    answer: "1,2"
-  },
-  {
-    level: 50,
-    question: "다음 코드의 출력 결과는?",
-    code: 'const arr = [1, 2, 3, 4, 5];\nconsole.log(arr.reduce((a, b) => a + b, 0));',
-    answer: "15"
+    id: 10,
+    name: "최종 시험",
+    description: "모든 능력을 활용해 5초 안에 클리어하세요!",
+    playerStart: { x: 50, y: 500 },
+    goal: { x: 700, y: 50 },
+    timeLimit: 5,
+    obstacles: [
+      { x: 0, y: 550, width: 800, height: 50 },
+      ...Array.from({ length: 5 }, (_, i) => ({
+        x: 150 + i * 120,
+        y: 0,
+        width: 20,
+        height: 400
+      })),
+      ...Array.from({ length: 4 }, (_, i) => ({
+        x: 200 + i * 120,
+        y: 200,
+        width: 40,
+        height: 40,
+        speedX: 3,
+        speedY: 2 + i
+      }))
+    ],
+    hint: "힌트: 작은 크기, 높은 점프력, 빠른 속도가 필요해요!"
   }
 ]; 

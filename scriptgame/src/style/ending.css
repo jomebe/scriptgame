@@ -1,29 +1,19 @@
-:root {
-  --neon-color: #aaff00;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-  color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
-}
-
-.main-container {
+.ending-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
   position: relative;
+  overflow: hidden;
+  padding: 20px;
 }
 
-/* 사이버펑크 스타일의 배경 효과 */
-.main-container::before {
+/* 사이버펑크 그리드 배경 */
+.ending-container::before {
   content: '';
   position: absolute;
   top: 0;
@@ -35,35 +25,49 @@ body {
     linear-gradient(rgba(0,255,136,0.1) 1px, transparent 1px) 0 0 / 50px 50px;
   pointer-events: none;
   animation: gridMove 20s linear infinite;
+  z-index: 1;
 }
 
-@keyframes gridMove {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(50px); }
+.ending-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #00ff88;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+  animation: glowPulse 2s infinite;
 }
 
-.title {
-  font-size: 4em;
-  margin-bottom: 1em;
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); }
+  50% { box-shadow: 0 0 50px rgba(0, 255, 136, 0.5); }
+  100% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.3); }
+}
+
+.ending-title {
+  font-size: 3em;
   color: #00ff88;
+  margin-bottom: 1em;
   text-transform: uppercase;
   letter-spacing: 5px;
-  text-shadow: 0 0 20px rgba(0,255,136,0.5);
-  position: relative;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
   animation: glitch 5s infinite;
 }
 
-@keyframes glitch {
-  0% { transform: skew(0deg); }
-  2% { transform: skew(2deg); filter: hue-rotate(0deg); }
-  4% { transform: skew(-2deg); filter: hue-rotate(90deg); }
-  6% { transform: skew(0deg); filter: hue-rotate(0deg); }
-  100% { transform: skew(0deg); }
+.ending-message {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  line-height: 1.6;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.start-btn {
-  padding: 20px 40px;
-  font-size: 1.5em;
+.ending-btn {
+  padding: 15px 30px;
+  font-size: 1.2em;
   background: rgba(0, 0, 0, 0.7);
   color: #00ff88;
   border: 2px solid #00ff88;
@@ -73,11 +77,12 @@ body {
   font-family: 'Orbitron', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin: 10px;
   position: relative;
   overflow: hidden;
 }
 
-.start-btn::before {
+.ending-btn::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -94,47 +99,39 @@ body {
   animation: shine 3s infinite;
 }
 
-@keyframes shine {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-.start-btn:hover {
+.ending-btn:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 30px rgba(0,255,136,0.4);
-  background: rgba(0,255,136,0.1);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+  background: rgba(0, 255, 136, 0.1);
 }
 
-.start-btn:active {
-  transform: translateY(-2px);
-}
-
-/* 부유하는 사이버 파티클 효과 */
-.particles {
+/* 부유하는 파티클 효과 */
+.ending-particles {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
-.particle {
+.ending-particle {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 3px;
+  height: 3px;
   background: #00ff88;
   border-radius: 50%;
-  animation: float 20s linear infinite;
+  animation: floatUp 10s linear infinite;
 }
 
-@keyframes float {
+@keyframes floatUp {
   0% {
     transform: translateY(100vh) scale(0);
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
   100% {
     transform: translateY(-100px) scale(1);
@@ -144,24 +141,30 @@ body {
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
-  .title {
-    font-size: 3em;
-    text-align: center;
-  }
-
-  .start-btn {
-    padding: 15px 30px;
-    font-size: 1.2em;
-  }
-}
-
-@media (max-width: 480px) {
-  .title {
+  .ending-title {
     font-size: 2em;
   }
 
-  .start-btn {
+  .ending-message {
+    font-size: 1.2em;
+  }
+
+  .ending-btn {
     padding: 12px 24px;
     font-size: 1em;
   }
 }
+
+@media (max-width: 480px) {
+  .ending-content {
+    padding: 20px;
+  }
+
+  .ending-title {
+    font-size: 1.5em;
+  }
+
+  .ending-message {
+    font-size: 1em;
+  }
+} 

@@ -383,47 +383,52 @@ const Game = () => {
       ) : (
         <div className="game-layout">
           <div className="game-area">
-            <canvas ref={canvasRef} width={800} height={600} />
+            <canvas ref={canvasRef} width={1024} height={768} />
           </div>
-          <div className="code-editor">
-            <h3>플레이어 코드 수정</h3>
-            <div className="code-help">
-              <p>사용 가능한 속성:</p>
-              <ul>
-                <li>speed: 이동 속도</li>
-                <li>size: 플레이어 크기</li>
-                <li>color: 플레이어 색상</li>
-                <li>x: X 좌표</li>
-                <li>y: Y 좌표</li>
-                <li>jumpPower: 점프력</li>
-                <li>gravity: 중력</li>
-                <li>bounce: 튕김 정도</li>
-                <li>trail: 이동 궤적</li>
-                <li>trailColor: 궤적 색상</li>
-                <li>shape: 'rect' 또는 'circle'</li>
-                <li>invincible: ��적 모드</li>
-              </ul>
+          <div className="side-panel">
+            <div className="code-editor">
+              <div className="code-input-area">
+                <h3>플레이어 코드 수정</h3>
+                <textarea
+                  value={playerCode}
+                  onChange={(e) => {
+                    setPlayerCode(e.target.value);
+                    const config = executePlayerCode(e.target.value);
+                    if (config) {
+                      playerPosRef.current = { x: config.x, y: config.y };
+                      setCodeError('');
+                    }
+                  }}
+                  rows={10}
+                  spellCheck={false}
+                />
+                {codeError && <div className="error-message">{codeError}</div>}
+                <button 
+                  className="level-menu-btn"
+                  onClick={() => setShowLevelSelect(true)}
+                >
+                  레벨 선택으로 돌아가기
+                </button>
+              </div>
+              
+              <div className="code-help">
+                <p>사용 가능한 속성:</p>
+                <ul>
+                  <li>speed: 이동 속도</li>
+                  <li>size: 플레이어 크기</li>
+                  <li>color: 플레이어 색상</li>
+                  <li>x: X 좌표</li>
+                  <li>y: Y 좌표</li>
+                  <li>jumpPower: 점프력</li>
+                  <li>gravity: 중력</li>
+                  <li>bounce: 튕김 정도</li>
+                  <li>trail: 이동 궤적</li>
+                  <li>trailColor: 궤적 색상</li>
+                  <li>shape: 'rect' 또는 'circle'</li>
+                  <li>invincible: 무적 모드</li>
+                </ul>
+              </div>
             </div>
-            <textarea
-              value={playerCode}
-              onChange={(e) => {
-                setPlayerCode(e.target.value);
-                const config = executePlayerCode(e.target.value);
-                if (config) {
-                  playerPosRef.current = { x: config.x, y: config.y };
-                  setCodeError('');
-                }
-              }}
-              rows={10}
-              spellCheck={false}
-            />
-            {codeError && <div className="error-message">{codeError}</div>}
-            <button 
-              className="level-menu-btn"
-              onClick={() => setShowLevelSelect(true)}
-            >
-              레벨 선택으로 돌아가기
-            </button>
           </div>
         </div>
       )}

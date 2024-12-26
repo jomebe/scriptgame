@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './component/main';
 import Game from './component/game';
 import Ending from './component/Ending';
+import './style/App.css'
 
 function App() {
   return (

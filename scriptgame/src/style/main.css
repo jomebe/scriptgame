@@ -10,11 +10,12 @@ h1 {
   color: #333;
   margin-bottom: 30px;
   font-size: 2.5em;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* 버튼 공통 스타일 */
 .game-btn, .level-btn, .back-btn, .submit-btn {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
   cursor: pointer;

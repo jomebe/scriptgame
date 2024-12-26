@@ -65,9 +65,6 @@ const Game = () => {
       >
         메인으로 돌아가기
       </button>
-      <Link to="/play/1">
-        <button>레벨 1 시작</button>
-      </Link>
     </div>
   );
 };

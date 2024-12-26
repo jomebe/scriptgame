@@ -1,12 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../style/main.css';
 
 const Main = () => {
   const navigate = useNavigate();
   
   return (
     <div className="container">
-      <h1>게임 타이틀</h1>
+      <h1>Script Game</h1>
       <div className="btn-wrapper">
         <button 
           className="game-btn"

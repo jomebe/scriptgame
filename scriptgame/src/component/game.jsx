@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../style/main.css';
 
 const Game = () => {
@@ -27,6 +27,10 @@ const Game = () => {
     }
   };
   
+  const handleStartLevel = () => {
+    navigate('/play/1');
+  };
+
   return (
     <div className="game-container">
       <h1>레벨 선택 화면</h1>
@@ -61,6 +65,9 @@ const Game = () => {
       >
         메인으로 돌아가기
       </button>
+      <Link to="/play/1">
+        <button>레벨 1 시작</button>
+      </Link>
     </div>
   );
 };

@@ -12,7 +12,6 @@ const LevelComponent = () => {
   const currentLevel = levelData.find(level => level.level === parseInt(levelId));
   
   useEffect(() => {
-    // 이전 레벨을 클리어하지 않았다면 레벨 선택 화면으로 돌아가기
     const savedLevels = JSON.parse(localStorage.getItem('clearedLevels') || '[]');
     const currentLevelNum = parseInt(levelId);
     
@@ -25,9 +24,6 @@ const LevelComponent = () => {
     let savedLevels = JSON.parse(localStorage.getItem('clearedLevels') || '[]');
     savedLevels = [...new Set([...savedLevels, levelNum])]; // 중복 제거
     localStorage.setItem('clearedLevels', JSON.stringify(savedLevels));
-    
-    // 디버깅용 콘솔 로그
-    console.log('Saved levels after clear:', savedLevels);
   };
   
   const checkAnswer = () => {
@@ -39,7 +35,7 @@ const LevelComponent = () => {
         navigate('/ending');
       }
     } else {
-      setMessage('틀렸습니다. 다시 시도해보세요.');
+      setMessage('Wrong answer. Please try again.');
       setTimeout(() => {
         setMessage('');
       }, 1500);
@@ -53,14 +49,14 @@ const LevelComponent = () => {
   };
 
   if (!currentLevel) {
-    return <div>레벨을 찾을 수 없습니다.</div>;
+    return <div>Level not found.</div>;
   }
 
   return (
     <div className="level-container">
-      <h1>레벨 {currentLevel.level}</h1>
+      <h1>Level {currentLevel.level}</h1>
       <div className="problem-container">
-        <h2>문제</h2>
+        <h2>Question</h2>
         <p>{currentLevel.question}</p>
         <pre className="code-block">
           <code>
@@ -74,7 +70,7 @@ const LevelComponent = () => {
           className="hint-btn"
           onClick={() => setShowHint(!showHint)}
         >
-          {showHint ? '힌트 숨기기' : '힌트 보기'}
+          {showHint ? 'Hide Hint' : 'Show Hint'}
         </button>
         {showHint && (
           <div className="hint-text">
@@ -89,11 +85,11 @@ const LevelComponent = () => {
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="정답을 입력하세요"
+          placeholder="Enter your answer"
           className="answer-input"
         />
         <button onClick={checkAnswer} className="submit-btn">
-          제출
+          Submit
         </button>
       </div>
       
@@ -103,7 +99,7 @@ const LevelComponent = () => {
         className="back-btn"
         onClick={() => navigate('/game')}
       >
-        레벨 선택으로 돌아가기
+        Back to Level Selection
       </button>
     </div>
   );
